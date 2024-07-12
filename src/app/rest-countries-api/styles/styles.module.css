@@ -1,0 +1,23 @@
+.bg {
+  background: gray;
+}
+
+.mainContainer {
+  margin: 2rem;
+}
+
+.nationCardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.nationCard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 300px;
+  min-height: 200px;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}/*# sourceMappingURL=styles.module.css.map */

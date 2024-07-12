@@ -1,0 +1,25 @@
+@mixin flexDisplay($direction) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: wrap;
+}
+
+.bg {
+  background: gray;
+}
+
+.mainContainer {
+  margin: 2rem;
+}
+
+.nationCardContainer {
+  @include flexDisplay(row);
+}
+
+.nationCard {
+  @include flexDisplay(column);
+  width: 300px;
+  min-height: 200px;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
