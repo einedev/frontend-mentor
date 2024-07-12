@@ -1,8 +1,10 @@
 'use client';
 
 import { Country } from './type';
+import Dropdown from './components/dropdown';
 import styles from './styles/styles.module.scss';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function Page() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -13,8 +15,8 @@ export default function Page() {
   const removeDuplicate = (arr: string[]) => {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   };
-  const handleClick = () => {
-    console.log("countries", countries);
+  // search matched countries
+  const handleSearch = () => {
     let searchResult: Country[] = [];
     // check if the first few letters of each nation name matches the user input
     searchResult = countries.filter((country) => {
@@ -22,10 +24,19 @@ export default function Page() {
       return nationName.substring(0, userInput.length).toLowerCase() === userInput.toLowerCase();
     });
     setDisplayContent((displayContent) => [...searchResult]);
-    console.log("searchResult", searchResult);
-    console.log(displayContent);
   }
 
+  const handleFilter = (keyword: string) => {
+    if (keyword === 'All' || keyword === '') {
+      // const temp = [...countries];
+      setDisplayContent(countries);
+      return;
+    };
+    let filteredResult = countries.filter((country) => {
+      return country.region.toLowerCase() === keyword.toLowerCase();
+    });
+    setDisplayContent((displayContent) => [...filteredResult]);
+  }
 
   // page init
   useEffect(() => {
@@ -99,8 +110,6 @@ export default function Page() {
   }, []);
 
 
-
-
   // // fetch & init data
   // fetch(url, options)
   //   .then(res => res.json())
@@ -169,17 +178,21 @@ export default function Page() {
   return (
     <div className={styles.mainContainer}>
       <input type="text" value={userInput} onChange={e => setUserInput(e.target.value)} />
-      <button onClick={handleClick}>search</button>
+      <button onClick={handleSearch}>search</button>
+      <Dropdown handleFilter={handleFilter}/>
       {/* <div className={styles.bg}>on page rest countries</div> */}
       <div className={styles.nationCardContainer}>
         {displayContent.map((country, index) =>
-        <div className={styles.nationCard} key={index}>
+        <Link href={{
+          pathname: `/rest-countries-api/countryPage`,
+          query: {nationName: country.nationName,},
+        }} className={styles.nationCard} key={index}>
           <p>{country.flagEmoji}</p>
           <p>{country.nationName}</p>
           <p>Population: {country.population}</p>
           <p>Region: {country.region}</p>
           <p>Capital: {country.capitalCity}</p>
-        </div>)}
+        </Link>)}
       </div>
     </div>
   );
