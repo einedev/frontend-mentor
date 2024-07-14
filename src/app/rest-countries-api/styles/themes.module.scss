@@ -1,48 +1,17 @@
 $mobile-width: 375px;
 $desktop-width: 1440px;
 
-$overall-padding-h: 80px;
-$padding-v-s: 48px;
-$padding-v-m: 80px;
-$gap: 10px;
+$spacing-3xl: 80px;
+$spacing-2xl: 64px;
+$spacing-xl: 48px;
+$spacing-lg: 32px;
+$spacing-ml: 24px;
+$spacing-md: 16px;
+$spacing-xmd: 12px;
+$spacing-sm: 8px;
+$spacing-xs: 4px;
 
-// main page
-$nation-card-width: 260px;
-$nation-card-gap: 72px;
-
-// detail page
-$two-col-container-mt: 80px;
-$mobile-two-col-container-mt: 128px;
-
-$flag-container-h: 400px;
-$flag-container-w: 560px;
-
-$property-container-mt: 32px;
-$mobile-property-container-mt: 48px;
-$clickable-tags-mt: 64px;
-$mobile-clickable-tags-mt: 72px;
-
-// nav bar
-$navbar-height: 80px;
-$mobile-navbar-height: 100px;
-$mobile-navbar-height-lg: 160px;
-
-$return-button-width: 136px;
-$return-button-height: 40px;
-$return-button-padding-v: 12px;
-
-
-
-
-
-
-
-
-
-
-
-
-
+$gap-s: 10px;
 
 // colour
 $dm-dark-blue: hsl(209, 23%, 22%); // (Dark Mode Elements)
@@ -54,8 +23,10 @@ $white: hsl(0, 0%, 100%); // (Dark Mode Text & Light Mode Elements)
 
 $shadow-color: hsla(0, 0%, 0%, 0.1);
 
-$font-size-homepage: 14px;
-$font-size-detail-page: 16px;
-
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 $primary-font: "Nunito Sans", sans-serif; // weights: 300, 600, 800
+
+// ============================
+$primary-background-color: $very-light-gray;
+$primary-color: $very-dark-blue;
+$primary-element-color: $white;

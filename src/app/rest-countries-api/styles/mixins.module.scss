@@ -1,0 +1,27 @@
+@mixin flexDisplay($direction) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: wrap;
+}
+@mixin flexCenter() {
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin effectDropShadow($size: 4px, $color: $shadow-color) {
+  box-shadow: 0 0 $size $color;
+}
+
+@mixin fullSize() {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin generalTheme($bg, $text) {
+  background-color: $bg;
+  color: $text;
+}
+
+@mixin roundCorner($size: 8px) {
+  border-radius: $size;
+}

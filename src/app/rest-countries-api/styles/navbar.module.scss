@@ -1,0 +1,22 @@
+.navBar {
+  @include generalTheme($primary-element-color, $primary-color);
+  @include flexDisplay(row);
+  @include effectDropShadow();
+  justify-content: space-between;
+  padding: 0 $spacing-3xl;
+}
+.navTitle {
+  font-weight: 800;
+  font-size: 20px;
+}
+.themeButton {
+  @include flexDisplay(row);
+  @include flexCenter();
+  background: none;
+  border: none;
+  width: auto;
+  gap: $gap-s;
+  &:hover {
+    cursor: pointer;
+  }
+}

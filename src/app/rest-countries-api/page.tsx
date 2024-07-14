@@ -21,14 +21,16 @@ export default function Page() {
     return arr.filter((item, index) => arr.indexOf(item) === index);
   };
   // search matched countries
-  const handleSearch = () => {
+  const handleKeyDown = (e: any) => {
     let searchResult: Country[] = [];
-    // check if the first few letters of each nation name matches the user input
-    searchResult = countries.filter((country) => {
-      const nationName = country.nationName;
-      return nationName.substring(0, userInput.length).toLowerCase() === userInput.toLowerCase();
-    });
-    setDisplayContent((displayContent) => [...searchResult]);
+    if (e.keyCode === 13) {
+      // check if the first few letters of each nation name matches the user input
+      searchResult = countries.filter((country) => {
+        const nationName = country.nationName;
+        return nationName.substring(0, userInput.length).toLowerCase() === userInput.toLowerCase();
+      });
+      setDisplayContent((displayContent) => [...searchResult]);
+    }
   }
 
   const handleFilter = (keyword: string) => {
@@ -181,19 +183,24 @@ export default function Page() {
   //   .catch(err => console.log('API error:', err));
   
 
+
+
   return (
     <div className={`${styles.bodyMainPage}`}>
       <NavBar />
       <div className={`${styles.container1}`}>
-        <div className={`${styles.inputContainer}`}>
-          <IoSearch className={`${styles.icon}`} />
-          <input
-            type="text" value={userInput}
-            onChange={e => setUserInput(e.target.value)}
-          />
+        <div className={`${styles.utilContainer}`}>
+          <div className={`${styles.inputContainer}`}>
+            <IoSearch className={`${styles.icon}`} />
+            <input
+              type="text" value={userInput}
+              placeholder='Search for a country...'
+              onKeyDown={handleKeyDown}
+              onChange={e => setUserInput(e.target.value)}
+            />
+          </div>
+          <Dropdown handleFilter={handleFilter}/>
         </div>
-        <button onClick={handleSearch}>search</button>
-        <Dropdown handleFilter={handleFilter}/>
         {/* <div className={styles.bg}>on page rest countries</div> */}
         <div className={styles.nationCardContainer}>
           {displayContent.map((country, index) =>

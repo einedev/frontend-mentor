@@ -1,13 +1,9 @@
 @import './themes.module';
+@import './mixins.module';
+@import './navbar.module';
+@import './dropdown.module';
 
-$primary-background-color: $very-light-gray;
-$primary-color: $very-dark-blue;
-$primary-element-color: $white;
 
-@mixin generalTheme($bg, $text) {
-  background-color: $bg;
-  color: $text;
-}
 .title {
   font-size: 28px;
   font-weight: 800;
@@ -23,42 +19,6 @@ $primary-element-color: $white;
 .property {
   font-weight: 600;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-@mixin flexDisplay($direction) {
-  display: flex;
-  flex-direction: $direction;
-  flex-wrap: wrap;
-}
-@mixin flexCenter() {
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin effectDropShadow($size: 4px, $color: $shadow-color) {
-  box-shadow: 0 0 $size $color;
-}
-
-@mixin fullSize() {
-  width: 100%;
-  height: 100%;
-}
-
-
-
-
-
 
 
 
@@ -80,29 +40,35 @@ $primary-element-color: $white;
 // main page
 
 .container1 {
-  padding: $padding-v-s $overall-padding-h;
-  font-size: $font-size-homepage;
+  padding: $spacing-xl $spacing-3xl;
+  font-size: 14px;
+}
+
+.utilContainer {
+  @include flexDisplay(row);
+  justify-content: space-between;
 }
 
 .inputContainer {
   @include generalTheme($primary-element-color, $primary-color);
+  @include roundCorner();
   height: 60px;
   width: 470px;
   font-size: 14px;
   position: relative;
-  border-radius: 8px;
 
   .icon {
     position: absolute;
     top: 50%;
-    left: 2px;
+    left: 24px;
     transform: translate(0, -50%);
-    min-width: 40px;
-    padding: 8px;
+    width: 20px;
+    height: 20px;
     background: none;
   }
 
   input {
+    @include roundCorner();
     border: none;
     height: 100%;
     width: 100%;
@@ -114,7 +80,7 @@ $primary-element-color: $white;
 .nationCardContainer {
   @include flexDisplay(row);
   justify-content: flex-start;
-  gap: $nation-card-gap;
+  gap: 72px;
   margin-top: 48px;
 }
 
@@ -122,7 +88,7 @@ $primary-element-color: $white;
 .nationCard {
   @include flexDisplay(row);
   @include effectDropShadow();
-  width: $nation-card-width;
+  width: 260px;
   height: 330px;
   border-radius: 0.5rem;
   text-decoration: none;
@@ -161,8 +127,8 @@ $primary-element-color: $white;
 
 // detail page
 .detailPageContainer {
-  padding: $overall-padding-h;
-  font-size: $font-size-detail-page;
+  padding: $spacing-3xl;
+  font-size: 16px;
 
   p {
     padding: 0;
@@ -172,16 +138,19 @@ $primary-element-color: $white;
   .twoColContainer {
     @include fullSize();
     @include flexDisplay(row);
-    margin-top: $two-col-container-mt;
+    margin-top: $spacing-3xl;
     justify-content: space-between;
     align-items: center;
     height: 70%;
+    
+    $flag-container-h: 400px;
+    $flag-container-w: 560px;
 
     .left, .right {
       width: 45%;
       min-width: $flag-container-w;
       height: 100%;
-      margin-bottom: $mobile-two-col-container-mt;
+      margin-bottom: $spacing-3xl;
     }
 
     .left {
@@ -203,12 +172,12 @@ $primary-element-color: $white;
       .propertyContainer {
         @include flexDisplay(row);
         justify-content: space-between;
-        margin-top: $property-container-mt;
+        margin-top: $spacing-lg;
         
         div {
           @include flexDisplay(column);
           width: 50%;
-          gap: $gap;
+          gap: $gap-s;
         }
       }
 
@@ -224,13 +193,13 @@ $primary-element-color: $white;
 .clickableTagsContainer {
   @include flexDisplay(row);
   align-items: center;
-  gap: $gap;
-  margin-top: $clickable-tags-mt;
+  gap: $gap-s;
+  margin-top: $spacing-2xl;
 
 }
 .clickableTags {
   @include flexDisplay(row);
-  gap: $gap;
+  gap: $gap-s;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -241,11 +210,11 @@ $primary-element-color: $white;
   @include flexCenter();
   @include generalTheme($primary-element-color, $primary-color);
   @include effectDropShadow(8px);
-  padding: 4px 12px;
+  @include roundCorner(4px);
+  padding: 2px 12px;
   height: 28px;
   min-width: 96px;
   text-decoration: none;
-  border-radius: 0.5rem;
 }
 
 
@@ -254,42 +223,12 @@ $primary-element-color: $white;
   @include flexDisplay(row);
   @include flexCenter();
   @include effectDropShadow(8px);
-  width: $return-button-width; 
-  height: $return-button-height;
-  gap: $gap;
+  width: 136px;
+  height: 40px;
+  gap: $gap-s;
   text-decoration: none;
   border-radius: 0.5rem;
 }
-
-
-
-// nav bar
-.navBar {
-  @include generalTheme($primary-element-color, $primary-color);
-  @include flexDisplay(row);
-  @include effectDropShadow();
-  justify-content: space-between;
-  padding: 0 $overall-padding-h;
-}
-.navTitle {
-  font-weight: 800;
-  font-size: 20px;
-}
-.themeButton {
-  @include flexDisplay(row);
-  @include flexCenter();
-  background: none;
-  border: none;
-  width: auto;
-  gap: $gap;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-
-
-
 
 
 
@@ -311,7 +250,8 @@ $primary-element-color: $white;
   $primary-element-color: $dm-dark-blue;
 
   .bodyDetailPage,
-  .bodyMainPage
+  .bodyMainPage,
+  .dropdownContainer span:hover
   {
     @include generalTheme(
       $primary-background-color,
@@ -323,7 +263,9 @@ $primary-element-color: $white;
   .returnButton,
   .clickableTag,
   .inputContainer,
-  .inputContainer *
+  .inputContainer *,
+  .dropdownContainer,
+  .dropdownContainer *
   {
     @include generalTheme(
       $primary-element-color,

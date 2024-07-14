@@ -1,26 +1,39 @@
 import { useState } from "react";
+import styles from '../styles/styles.module.scss';
+import { FaAngleDown } from "react-icons/fa6";
 
 export default function Dropdown ({handleFilter}: {handleFilter:any}) {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('Filter by Region');
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const options = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-  const handleChange = (event: any) => {
-    console.log(event.target.value);
-    setSelectedOption(event.target.value);
-    handleFilter(event.target.value);
+  const handleChange = (target: string) => {
+    setSelectedOption(target);
+    handleFilter(target);
+    setShowDropdown(false);
   };
 
   return (
-    <form>
-      <select value={selectedOption} onChange={handleChange}>
-        <option value="">Filter by Region</option>
+    <div className={`${styles.dropdownContainer}`}>
+      <div
+        className={`${styles.selectedItem}`}
+        onClick={() => {setShowDropdown(!showDropdown)}}
+      >
+        <p>{selectedOption}</p>
+        <FaAngleDown />
+      </div>
+      {showDropdown ?
+      <div className={`${styles.dropdown}`}
+        onMouseLeave={() => {setShowDropdown(false)}}
+      >
         {options.map((option, index) => (
-          <option key={index} value={option}>
+          <span key={index} onClick={() => {handleChange(option)}}>
             {option}
-          </option>
+          </span>
         ))}
-      </select>
-    </form>
+      </div> : <></>
+      }
+    </div>
   );
 
 };
