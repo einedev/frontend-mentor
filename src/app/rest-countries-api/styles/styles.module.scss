@@ -1,25 +1,332 @@
+@import './themes.module';
+
+$primary-background-color: $very-light-gray;
+$primary-color: $very-dark-blue;
+$primary-element-color: $white;
+
+@mixin generalTheme($bg, $text) {
+  background-color: $bg;
+  color: $text;
+}
+.title {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.titleSmall {
+  font-weight: 800;
+
+  font-size: 20px;
+  margin: 12px 0 !important;
+}
+
+.property {
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 @mixin flexDisplay($direction) {
   display: flex;
   flex-direction: $direction;
   flex-wrap: wrap;
 }
-
-.bg {
-  background: gray;
+@mixin flexCenter() {
+  align-items: center;
+  justify-content: center;
 }
 
-.mainContainer {
-  margin: 2rem;
+@mixin effectDropShadow($size: 4px, $color: $shadow-color) {
+  box-shadow: 0 0 $size $color;
+}
+
+@mixin fullSize() {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+.body {
+  @include generalTheme($primary-background-color, $primary-color);
+  font-family: $primary-font;
+}
+
+.bodyDetailPage {
+  @extend .body;
+  height: 100%;
+}
+
+.bodyMainPage {
+  @extend .body;
+  min-height: 100vh;
+}
+
+// main page
+
+.container1 {
+  padding: $padding-v-s $overall-padding-h;
+  font-size: $font-size-homepage;
+}
+
+.inputContainer {
+  @include generalTheme($primary-element-color, $primary-color);
+  height: 60px;
+  width: 470px;
+  font-size: 14px;
+  position: relative;
+  border-radius: 8px;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translate(0, -50%);
+    min-width: 40px;
+    padding: 8px;
+    background: none;
+  }
+
+  input {
+    border: none;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 72px;
+  }
 }
 
 .nationCardContainer {
   @include flexDisplay(row);
+  justify-content: flex-start;
+  gap: $nation-card-gap;
+  margin-top: 48px;
 }
 
+
 .nationCard {
-  @include flexDisplay(column);
-  width: 300px;
-  min-height: 200px;
-  border: 1px solid black;
+  @include flexDisplay(row);
+  @include effectDropShadow();
+  width: $nation-card-width;
+  height: 330px;
   border-radius: 0.5rem;
+  text-decoration: none;
+  color: $primary-color;
+  background-color: $primary-element-color;
+  overflow: hidden;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .top, .bottom {
+    width: 100%;
+    height: 50%;
+  }
+
+  .top {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+  }
+
+  .bottom {
+    @include flexDisplay(column);
+    padding: 24px;
+  }
+}
+
+
+
+
+
+// detail page
+.detailPageContainer {
+  padding: $overall-padding-h;
+  font-size: $font-size-detail-page;
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
+
+  .twoColContainer {
+    @include fullSize();
+    @include flexDisplay(row);
+    margin-top: $two-col-container-mt;
+    justify-content: space-between;
+    align-items: center;
+    height: 70%;
+
+    .left, .right {
+      width: 45%;
+      min-width: $flag-container-w;
+      height: 100%;
+      margin-bottom: $mobile-two-col-container-mt;
+    }
+
+    .left {
+      @include flexDisplay(column);
+
+      overflow: hidden;
+      height: $flag-container-h;
+
+      img {
+        width: $flag-container-w;
+        height: $flag-container-h;
+      }
+    }
+
+    .right {
+      @include flexDisplay(column);
+
+
+      .propertyContainer {
+        @include flexDisplay(row);
+        justify-content: space-between;
+        margin-top: $property-container-mt;
+        
+        div {
+          @include flexDisplay(column);
+          width: 50%;
+          gap: $gap;
+        }
+      }
+
+      
+
+      
+
+    }
+  }
+  
+}
+
+.clickableTagsContainer {
+  @include flexDisplay(row);
+  align-items: center;
+  gap: $gap;
+  margin-top: $clickable-tags-mt;
+
+}
+.clickableTags {
+  @include flexDisplay(row);
+  gap: $gap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+.clickableTag {
+  @include flexDisplay(row);
+  @include flexCenter();
+  @include generalTheme($primary-element-color, $primary-color);
+  @include effectDropShadow(8px);
+  padding: 4px 12px;
+  height: 28px;
+  min-width: 96px;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+
+.returnButton {
+  @include generalTheme($primary-element-color, $primary-color);
+  @include flexDisplay(row);
+  @include flexCenter();
+  @include effectDropShadow(8px);
+  width: $return-button-width; 
+  height: $return-button-height;
+  gap: $gap;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+
+
+// nav bar
+.navBar {
+  @include generalTheme($primary-element-color, $primary-color);
+  @include flexDisplay(row);
+  @include effectDropShadow();
+  justify-content: space-between;
+  padding: 0 $overall-padding-h;
+}
+.navTitle {
+  font-weight: 800;
+  font-size: 20px;
+}
+.themeButton {
+  @include flexDisplay(row);
+  @include flexCenter();
+  background: none;
+  border: none;
+  width: auto;
+  gap: $gap;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[data-theme='dark'] {
+  $primary-background-color: $dm-very-dark-blue;
+  $primary-color: $white;
+  $primary-element-color: $dm-dark-blue;
+
+  .bodyDetailPage,
+  .bodyMainPage
+  {
+    @include generalTheme(
+      $primary-background-color,
+      $primary-color);
+  }
+
+  .navBar,
+  .nationCard,
+  .returnButton,
+  .clickableTag,
+  .inputContainer,
+  .inputContainer *
+  {
+    @include generalTheme(
+      $primary-element-color,
+      $primary-color);
+  }
 }

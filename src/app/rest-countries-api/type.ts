@@ -10,4 +10,5 @@ export interface Country {
   currencies: string[];
   languages: string[];
   borderCountries: string[]; // in cca2, ccn3, cca3 or cioc
+  cca2: string;
 };

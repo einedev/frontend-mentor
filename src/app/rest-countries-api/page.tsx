@@ -1,10 +1,15 @@
 'use client';
 
 import { Country } from './type';
-import Dropdown from './components/dropdown';
-import styles from './styles/styles.module.scss';
+import { formatNumber } from './utils/helper';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+
+import NavBar from './components/navBar';
+import Dropdown from './components/dropdown';
+
+import styles from './styles/styles.module.scss';
+import { IoSearch } from "react-icons/io5";
 
 export default function Page() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -96,6 +101,7 @@ export default function Page() {
             currencies: currencies,
             languages: languages,
             borderCountries: country.borders ? country.borders : [],
+            cca2: country.cca2,
           };
           setDisplayContent((displayContent) => [...displayContent, newCountry]);
           setCountries((countries) => [...countries, newCountry]);
@@ -176,23 +182,39 @@ export default function Page() {
   
 
   return (
-    <div className={styles.mainContainer}>
-      <input type="text" value={userInput} onChange={e => setUserInput(e.target.value)} />
-      <button onClick={handleSearch}>search</button>
-      <Dropdown handleFilter={handleFilter}/>
-      {/* <div className={styles.bg}>on page rest countries</div> */}
-      <div className={styles.nationCardContainer}>
-        {displayContent.map((country, index) =>
-        <Link href={{
-          pathname: `/rest-countries-api/countryPage`,
-          query: {nationName: country.nationName,},
-        }} className={styles.nationCard} key={index}>
-          <p>{country.flagEmoji}</p>
-          <p>{country.nationName}</p>
-          <p>Population: {country.population}</p>
-          <p>Region: {country.region}</p>
-          <p>Capital: {country.capitalCity}</p>
-        </Link>)}
+    <div className={`${styles.bodyMainPage}`}>
+      <NavBar />
+      <div className={`${styles.container1}`}>
+        <div className={`${styles.inputContainer}`}>
+          <IoSearch className={`${styles.icon}`} />
+          <input
+            type="text" value={userInput}
+            onChange={e => setUserInput(e.target.value)}
+          />
+        </div>
+        <button onClick={handleSearch}>search</button>
+        <Dropdown handleFilter={handleFilter}/>
+        {/* <div className={styles.bg}>on page rest countries</div> */}
+        <div className={styles.nationCardContainer}>
+          {displayContent.map((country, index) =>
+          <Link href={{
+            pathname: `/rest-countries-api/countryPage`,
+            query: {nationName: country.nationName,},
+          }} className={styles.nationCard} key={index}>
+            <div className={styles.top}>
+              <img
+                src={`https://flagcdn.com/${country?.cca2.toLowerCase()}.svg`}
+                alt={`${country?.nationName}`}>
+              </img>
+            </div>
+            <div className={styles.bottom}>
+              <p className={styles.titleSmall}>{country.nationName}</p>
+              <p><span className={styles.property}>Population:</span> {formatNumber(country.population)}</p>
+              <p><span className={styles.property}>Region:</span> {country.region}</p>
+              <p><span className={styles.property}>Capital:</span> {country.capitalCity}</p>
+            </div>
+          </Link>)}
+        </div>
       </div>
     </div>
   );
