@@ -62,7 +62,7 @@
 }
 
 .nationCardContainer {
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: $spacing-2xl;
   margin-top: $spacing-xl;
 
@@ -77,7 +77,7 @@
 .nationCard {
   width: 260px;
   max-width: 280px;
-  height: 330px;
+  height: 360px;
   border-radius: 0.5rem;
   text-decoration: none;
   overflow: hidden;
