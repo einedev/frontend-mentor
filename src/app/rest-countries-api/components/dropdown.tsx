@@ -22,12 +22,17 @@ export default function Dropdown ({handleFilter}: {handleFilter:any}) {
         <p>{selectedOption}</p>
         <FaAngleDown />
       </div>
+      
       {showDropdown ?
       <div className={`${styles.dropdown}`}
         onMouseLeave={() => {setShowDropdown(false)}}
       >
         {options.map((option, index) => (
-          <span key={index} onClick={() => {handleChange(option)}}>
+          <span
+            key={index}
+            className={`${styles.span}`}
+            onClick={() => {handleChange(option)}}
+          >
             {option}
           </span>
         ))}

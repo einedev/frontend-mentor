@@ -24,10 +24,10 @@ export default function Page() {
   const handleKeyDown = (e: any) => {
     let searchResult: Country[] = [];
     if (e.keyCode === 13) {
-      // check if the first few letters of each nation name matches the user input
       searchResult = countries.filter((country) => {
         const nationName = country.nationName;
-        return nationName.substring(0, userInput.length).toLowerCase() === userInput.toLowerCase();
+        return nationName.toLowerCase().includes(userInput.toLowerCase());
+        // return nationName.substring(0, userInput.length).toLowerCase() === userInput.toLowerCase();
       });
       setDisplayContent((displayContent) => [...searchResult]);
     }

@@ -1,7 +1,31 @@
 @import './themes.module';
 @import './mixins.module';
+
 @import './navbar.module';
+@import './mainPage.module';
+@import './countryPage.module';
 @import './dropdown.module';
+
+// general styling
+
+.body {
+  @include generalTheme($primary-background-color, $primary-color);
+  font-family: $primary-font;
+  font-weight: 300;
+}
+
+.bodyMainPage {
+  @extend .body;
+  min-height: 100vh;
+}
+
+.bodyDetailPage {
+  @extend .body;
+  height: 100%;
+}
+
+
+
 
 
 .title {
@@ -18,224 +42,8 @@
 
 .property {
   font-weight: 600;
+  margin-right: $spacing-xs;
 }
-
-
-
-.body {
-  @include generalTheme($primary-background-color, $primary-color);
-  font-family: $primary-font;
-}
-
-.bodyDetailPage {
-  @extend .body;
-  height: 100%;
-}
-
-.bodyMainPage {
-  @extend .body;
-  min-height: 100vh;
-}
-
-// main page
-
-.container1 {
-  padding: $spacing-xl $spacing-3xl;
-  font-size: 14px;
-}
-
-.utilContainer {
-  @include flexDisplay(row);
-  justify-content: space-between;
-}
-
-.inputContainer {
-  @include generalTheme($primary-element-color, $primary-color);
-  @include roundCorner();
-  height: 60px;
-  width: 470px;
-  font-size: 14px;
-  position: relative;
-
-  .icon {
-    position: absolute;
-    top: 50%;
-    left: 24px;
-    transform: translate(0, -50%);
-    width: 20px;
-    height: 20px;
-    background: none;
-  }
-
-  input {
-    @include roundCorner();
-    border: none;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    padding-left: 72px;
-  }
-}
-
-.nationCardContainer {
-  @include flexDisplay(row);
-  justify-content: flex-start;
-  gap: 72px;
-  margin-top: 48px;
-}
-
-
-.nationCard {
-  @include flexDisplay(row);
-  @include effectDropShadow();
-  width: 260px;
-  height: 330px;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: $primary-color;
-  background-color: $primary-element-color;
-  overflow: hidden;
-
-  p {
-    margin: 0;
-    padding: 0;
-  }
-
-  .top, .bottom {
-    width: 100%;
-    height: 50%;
-  }
-
-  .top {
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      overflow: hidden;
-    }
-  }
-
-  .bottom {
-    @include flexDisplay(column);
-    padding: 24px;
-  }
-}
-
-
-
-
-
-// detail page
-.detailPageContainer {
-  padding: $spacing-3xl;
-  font-size: 16px;
-
-  p {
-    padding: 0;
-    margin: 0;
-  }
-
-  .twoColContainer {
-    @include fullSize();
-    @include flexDisplay(row);
-    margin-top: $spacing-3xl;
-    justify-content: space-between;
-    align-items: center;
-    height: 70%;
-    
-    $flag-container-h: 400px;
-    $flag-container-w: 560px;
-
-    .left, .right {
-      width: 45%;
-      min-width: $flag-container-w;
-      height: 100%;
-      margin-bottom: $spacing-3xl;
-    }
-
-    .left {
-      @include flexDisplay(column);
-
-      overflow: hidden;
-      height: $flag-container-h;
-
-      img {
-        width: $flag-container-w;
-        height: $flag-container-h;
-      }
-    }
-
-    .right {
-      @include flexDisplay(column);
-
-
-      .propertyContainer {
-        @include flexDisplay(row);
-        justify-content: space-between;
-        margin-top: $spacing-lg;
-        
-        div {
-          @include flexDisplay(column);
-          width: 50%;
-          gap: $gap-s;
-        }
-      }
-
-      
-
-      
-
-    }
-  }
-  
-}
-
-.clickableTagsContainer {
-  @include flexDisplay(row);
-  align-items: center;
-  gap: $gap-s;
-  margin-top: $spacing-2xl;
-
-}
-.clickableTags {
-  @include flexDisplay(row);
-  gap: $gap-s;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-}
-.clickableTag {
-  @include flexDisplay(row);
-  @include flexCenter();
-  @include generalTheme($primary-element-color, $primary-color);
-  @include effectDropShadow(8px);
-  @include roundCorner(4px);
-  padding: 2px 12px;
-  height: 28px;
-  min-width: 96px;
-  text-decoration: none;
-}
-
-
-.returnButton {
-  @include generalTheme($primary-element-color, $primary-color);
-  @include flexDisplay(row);
-  @include flexCenter();
-  @include effectDropShadow(8px);
-  width: 136px;
-  height: 40px;
-  gap: $gap-s;
-  text-decoration: none;
-  border-radius: 0.5rem;
-}
-
-
-
-
-
-
-
 
 
 
@@ -250,25 +58,11 @@
   $primary-element-color: $dm-dark-blue;
 
   .bodyDetailPage,
-  .bodyMainPage,
-  .dropdownContainer span:hover
+  .bodyMainPage
   {
     @include generalTheme(
       $primary-background-color,
       $primary-color);
   }
-
-  .navBar,
-  .nationCard,
-  .returnButton,
-  .clickableTag,
-  .inputContainer,
-  .inputContainer *,
-  .dropdownContainer,
-  .dropdownContainer *
-  {
-    @include generalTheme(
-      $primary-element-color,
-      $primary-color);
-  }
+  
 }

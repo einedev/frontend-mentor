@@ -1,0 +1,146 @@
+// main page
+
+.container1 {
+  
+  padding: $spacing-xl $spacing-3xl;
+  font-size: 14px;
+
+  @media (max-width: $laptop-width) {
+    padding: $spacing-xl;
+  }
+
+  @media (max-width: $mobile-lg-width) {
+    padding: $spacing-lg;
+  }
+}
+
+.utilContainer {
+  justify-content: space-between;
+
+  @include flexDisplay(row);
+
+  @media (max-width: $tablet-width) {
+    @include flexDisplay(column);
+    gap: $spacing-lg;
+  }
+}
+
+.inputContainer {
+  height: 60px;
+  width: 470px;
+  font-size: 14px;
+  position: relative;
+  @include roundCorner();
+  
+  @media (max-width: $laptop-width) {
+    height: 48px;
+  }
+
+  @media (max-width: $tablet-width) {
+    width: 100%;
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translate(0, -50%);
+    width: 20px;
+    height: 20px;
+    background: none;
+  }
+
+  input {
+    border: none;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 72px;
+
+    @include roundCorner();
+  }
+}
+
+.nationCardContainer {
+  justify-content: space-between;
+  gap: $spacing-2xl;
+  margin-top: $spacing-xl;
+
+  @include flexDisplay(row);
+
+  @media (max-width: $tablet-width) {
+    justify-content: center;
+  }
+}
+
+
+.nationCard {
+  width: 260px;
+  max-width: 280px;
+  height: 330px;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  overflow: hidden;
+  
+  @include flexDisplay(row);
+  @include effectDropShadow();
+
+  @media (max-width: $mobile-lg-width) {
+    width: 100%;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .top, .bottom {
+    width: 100%;
+    height: 50%;
+  }
+
+  .top {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+  }
+
+  .bottom {
+    @include flexDisplay(column);
+    padding: 24px;
+  }
+}
+
+
+// ================================
+// theme
+
+.inputContainer,
+.inputContainer *,
+.nationCard {
+  @include generalTheme($primary-element-color, $primary-color);
+}
+
+.nationCard {
+  @include hoverTheme($primary-background-color, $primary-color);
+}
+
+[data-theme='dark'] {
+  $primary-background-color: $dm-very-dark-blue;
+  $primary-color: $white;
+  $primary-element-color: $dm-dark-blue;
+
+  .inputContainer,
+  .inputContainer *,
+  .nationCard {
+    @include generalTheme($primary-element-color, $primary-color);
+  }
+
+  .nationCard {
+    @include hoverTheme($primary-background-color, $primary-color);
+  }
+
+}

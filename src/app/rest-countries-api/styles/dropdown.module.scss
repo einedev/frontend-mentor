@@ -2,51 +2,74 @@
   width: 196px;
   position: relative;
   @include roundCorner();
+}
 
-  .selectedItem {
-    @include generalTheme($primary-element-color, $primary-color);
-    @include flexDisplay(row);
-    @include effectDropShadow();
-    @include roundCorner();
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    height: 100%;
-    width: 100%;
-    width: 196px;
-    box-sizing: border-box;
-    padding: 0 $spacing-ml;
+.dropdown {
+  position: absolute;
+  overflow: hidden;
+  width: 196px;
+  top: 72px;
+  left: 0;
+  z-index: 1;
+  
+  @include flexDisplay(column);
+  @include roundCorner();
+  @include effectDropShadow();
+}
 
-    &:hover {
-      cursor: pointer;
-    }
+.selectedItem {
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  height: 100%;
+  width: 100%;
+  width: 196px;
+  box-sizing: border-box;
+  padding: 0 $spacing-ml;
+  
+  @include flexDisplay(row);
+  @include effectDropShadow();
+  @include roundCorner();
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.span {
+  padding: $spacing-sm $spacing-ml;
+  &:first-child {
+    padding-top: $spacing-md;
+  }
+  &:last-child {
+    padding-bottom: $spacing-md;
+  }
+}
+
+// ================================
+// theme
+
+.dropdown, .selectedItem {
+  @include generalTheme($primary-element-color, $primary-color);
+}
+
+.span, .selectedItem {
+  @include hoverTheme($primary-background-color, $primary-color);
+}
+
+[data-theme='dark'] {
+  $primary-background-color: $dm-very-dark-blue;
+  $primary-color: $white;
+  $primary-element-color: $dm-dark-blue;
+
+  .dropdown, .selectedItem
+  {
+    @include generalTheme(
+      $primary-element-color,
+      $primary-color);
   }
 
-  .dropdown {
-    @include flexDisplay(column);
-    @include roundCorner();
-    @include effectDropShadow();
-    @include generalTheme($primary-element-color, $primary-color);
-    position: absolute;
-    overflow: hidden;
-    width: 196px;
-    top: 72px;
-    left: 0;
-    z-index: 1;
-
+  .span, .selectedItem {
+    @include hoverTheme($primary-background-color, $primary-color);
   }
 
-  span {
-    padding: $spacing-sm $spacing-ml;
-    &:first-child {
-      padding-top: $spacing-md;
-    }
-    &:last-child {
-      padding-bottom: $spacing-md;
-    }
-    &:hover {
-      cursor: pointer;
-      background-color: $primary-background-color;
-    }
-  }
 }

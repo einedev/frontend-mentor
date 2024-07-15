@@ -1,5 +1,12 @@
-$mobile-width: 375px;
-$desktop-width: 1440px;
+// size & spacing
+
+$mobile-sm-width: 320px;
+$mobile-md-width: 375px;
+$mobile-lg-width: 425px;
+$tablet-width: 768px;
+$laptop-width: 1024px;
+$laptop-lg-width: 1440px;
+$four-k-width: 2560px;
 
 $spacing-3xl: 80px;
 $spacing-2xl: 64px;
@@ -13,6 +20,11 @@ $spacing-xs: 4px;
 
 $gap-s: 10px;
 
+// font
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+$primary-font: "Nunito Sans", sans-serif; // weights: 300, 600, 800
+
+// ============================
 // colour
 $dm-dark-blue: hsl(209, 23%, 22%); // (Dark Mode Elements)
 $dm-very-dark-blue: hsl(207, 26%, 17%); // (Dark Mode Background)
@@ -20,13 +32,15 @@ $very-dark-blue: hsl(200, 15%, 8%); // (Light Mode Text)
 $dark-gray: hsl(0, 0%, 52%); // (Light Mode Input)
 $very-light-gray: hsl(0, 0%, 98%); // (Light Mode Background)
 $white: hsl(0, 0%, 100%); // (Dark Mode Text & Light Mode Elements)
-
 $shadow-color: hsla(0, 0%, 0%, 0.1);
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-$primary-font: "Nunito Sans", sans-serif; // weights: 300, 600, 800
-
-// ============================
+// theme init
 $primary-background-color: $very-light-gray;
 $primary-color: $very-dark-blue;
 $primary-element-color: $white;
+
+// [data-theme='dark'] {
+//   $primary-background-color: $dm-very-dark-blue;
+//   $primary-color: $white;
+//   $primary-element-color: $dm-dark-blue;
+// }

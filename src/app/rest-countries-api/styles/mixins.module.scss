@@ -25,3 +25,10 @@
 @mixin roundCorner($size: 8px) {
   border-radius: $size;
 }
+
+@mixin hoverTheme($bg, $text) {
+  &:hover {
+    background-color: $bg;
+    color: $text;
+  }
+}

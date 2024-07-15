@@ -1,22 +1,63 @@
 .navBar {
-  @include generalTheme($primary-element-color, $primary-color);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $spacing-3xl;
+
+  
   @include flexDisplay(row);
   @include effectDropShadow();
-  justify-content: space-between;
-  padding: 0 $spacing-3xl;
+  
+  @media (max-width: $laptop-width) {
+    padding: 0 $spacing-xl;
+  }
+
+  @media (max-width: $mobile-lg-width) {
+    padding: 0 $spacing-lg;
+  }
 }
+
 .navTitle {
   font-weight: 800;
   font-size: 20px;
+
+  @media (max-width: $mobile-lg-width) {
+    font-size: 14px;
+  }
 }
+
 .themeButton {
-  @include flexDisplay(row);
-  @include flexCenter();
   background: none;
   border: none;
   width: auto;
   gap: $gap-s;
+  align-items: center;
+
+  @include flexDisplay(row);
+  @include flexCenter();
+
   &:hover {
     cursor: pointer;
   }
+}
+
+
+// ================================
+// theme
+
+.navBar {
+  @include generalTheme($primary-element-color, $primary-color);
+}
+
+[data-theme='dark'] {
+  $primary-background-color: $dm-very-dark-blue;
+  $primary-color: $white;
+  $primary-element-color: $dm-dark-blue;
+
+  .navBar
+  {
+    @include generalTheme(
+      $primary-element-color,
+      $primary-color);
+  }
+
 }
