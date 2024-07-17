@@ -1,0 +1,140 @@
+.mainContainer {
+  z-index: 1;
+  width: 1110px;
+  @include flexDispaly(column);
+  align-items: center;
+  @media (max-width: 1200px) {
+    width: 900px;
+  }
+  @media (max-width: 1000px) {
+    width: 700px;
+  }
+  @media (max-width: $tablet-width) {
+    width: 330px;
+  }
+  @media (max-width: $mobile-lg-width) {
+    width: 300px;
+  }
+}
+
+.title {
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: $size-lg;
+  color: $background-color;
+}
+
+.inputContainer {
+  width: 550px;
+  height: 58px;
+  overflow: hidden;
+  justify-content: stretch;
+  position: relative;
+  margin-top: $size-lg;
+  margin-bottom: $size-xl;
+  @include flexDispaly(row);
+  @include DropShadow();
+  @include roundCorner();
+  @media (max-width: $tablet-width) {
+    width: 100%;
+  }
+}
+
+.inputbox {
+  width:100%;
+  background-color: $background-color;
+  border: none;
+  color: $very-dark-gray;
+  padding: 0;
+  padding-left: $size-ml;
+  padding-right: calc($size-ml + 58px);
+  margin: 0;
+  font-size: 18px;
+}
+
+@keyframes text-scroll {
+
+}
+
+.button {
+  width: 58px;
+  height: 100%;
+  align-items: center;
+  background-color: $very-dark-gray;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url('/ip-address-tracker/icon-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.infoContainer {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  background-color: $background-color;
+  @include flexDispaly(row);
+  @include DropShadow();
+  @include roundCorner();
+  @media (max-width: $tablet-width) {
+    @include flexDispaly(column);
+    height: 296px;
+    padding: $size-md 0;
+  }
+}
+
+.singleInfoCard {
+  @include flexDispaly(column);
+  width: 25%;
+  box-sizing: border-box;
+  padding: $size-lg $size-ml;
+  position: relative;
+  & * {
+    margin: 0;
+  }
+  &:not(:last-child):after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 50%;
+    background-color: $deco-line;
+  }
+  @media (max-width: $tablet-width) {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 25%;
+    padding: 0;
+    @include flexDispaly(column);
+  }
+}
+
+.subtitle {
+  color: $dark-gray;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.detail {
+  color: $very-dark-gray;
+  font-size: 24px;
+  margin-top: $size-md;
+  font-weight: 500;
+  word-wrap: break-word;
+  word-break: break-all;
+  @media (max-width: $tablet-width) {
+    font-size: 16px;
+    margin-top: $size-sm;
+  }
+}

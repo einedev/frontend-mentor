@@ -1,0 +1,21 @@
+@import './themes.module';
+@import './mixins.module';
+@import './backgroundComponent.module';
+@import './mainComponent.module';
+
+.bodyContainer {
+  background-color: white;
+  color: black;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  position: relative;
+  font-family: $primary-font;
+  font-size: 18px;
+  @include flexDispaly(column);
+  align-items: center;
+  // overflow: hidden;
+}
+

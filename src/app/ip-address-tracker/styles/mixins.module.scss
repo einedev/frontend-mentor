@@ -1,0 +1,13 @@
+@mixin flexDispaly($direction: row) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: $direction;
+}
+
+@mixin DropShadow() {
+  box-shadow: 0 0 12px $drop-shadow;
+}
+
+@mixin roundCorner() {
+  border-radius: 12px;  
+}

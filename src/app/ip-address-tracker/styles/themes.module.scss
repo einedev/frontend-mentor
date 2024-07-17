@@ -1,0 +1,36 @@
+// size & spacing
+$mobile-sm-width: 320px;
+$mobile-md-width: 375px;
+$mobile-lg-width: 425px;
+$tablet-width: 768px;
+$laptop-width: 1024px;
+$laptop-lg-width: 1440px;
+$four-k-width: 2560px;
+
+$size-3xl: 80px;
+$size-2xl: 64px;
+$size-xl: 48px;
+$size-lg: 32px;
+$size-ml: 24px;
+$size-md: 16px;
+$size-xmd: 12px;
+$size-sm: 8px;
+$size-xs: 4px;
+
+// font
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+$primary-font: "Rubik", sans-serif; // weights: 400, 500, 700, size: 18
+
+// ============================
+// colour theme here
+$very-dark-gray: hsl(0, 0%, 17%);
+$drop-shadow: hsla(0, 0%, 0%, 0.1);
+$dark-gray: hsl(0, 0%, 59%);
+$white: hsl(0, 0%, 100%);
+$deco-line: hsla(0, 0%, 59%, 0.5);
+
+
+// theme init
+$primary-color: $very-dark-gray;
+$secondary-color: $dark-gray;
+$background-color: $white;
