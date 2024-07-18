@@ -7,6 +7,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import styles from './styles/styles.module.scss';
 import dynamic from 'next/dynamic';
+import { MdCancel } from "react-icons/md";
 const axios = require('axios');
 
 
@@ -27,15 +28,20 @@ export default function Page() {
     lat: '',
   });
   const [geoInfoProcessed, setGeoInfoProcessed] = useState<any>({
-    'ip address': '',
-    'location': '',
-    'timezone': '',
-    'isp': '',
+    'ip address': undefined,
+    'location': undefined,
+    'timezone': undefined,
+    'isp': undefined,
   });
+  const [showFeedback, setshowFeedback] = useState(false);
 
-  // const Map = dynamic(() => import('./components/map'), {
-  //   ssr: false,
-  // });
+  
+  const handleShowFeedback = async () => {
+    setshowFeedback(true);
+    setTimeout(() => {
+      setshowFeedback(false);
+    }, 3000);
+  };
 
   const mapUpdate = () => {
     const Map = dynamic(() => import('./components/map'), {
@@ -51,9 +57,10 @@ export default function Page() {
     try {
       if (!currIP) { return; }
       const resGeo = await axios.get(url);
-      console.log(resGeo.data);
+      // console.log(resGeo.data);
       if (resGeo.data.status === 'fail') {
-        console.log('invalid IP address!');
+        // console.log('invalid IP address!');
+        handleShowFeedback();
         return; 
       }
       const resUTC = await axios.get(`http://worldtimeapi.org/api/timezone/${resGeo.data.timezone}`);
@@ -106,19 +113,28 @@ export default function Page() {
     }
   }, [currIP])
 
-
-  // useEffect(() => {
-  //   //https://medium.com/@jihdeh/using-the-spread-operator-to-ensure-re-rendering-in-react-components-7696f6dade9a#:~:text=The%20spread%20operator%20is%20used,re%2Drender%20of%20the%20component.
-    
-  //   console.log('called! geoInfo effect');
-  //   // console.log(JSON.stringify(geoInfo));
-  // }, [geoInfo]);
+  const handleSetCurrIP = async (userInput: string) => {
+    try {
+      let url = `http://ip-api.com/json/${userInput}`;
+      const resGeo = await axios.get(url);
+      if (resGeo.data.status === 'fail') {
+        handleShowFeedback();
+        return; 
+      } else {
+        setCurrIP(userInput);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const handleKeyDown = (e: any) => {
     if (e.keyCode === 13) {
-      setCurrIP(userInput);
+      handleSetCurrIP(userInput);
     }
   }
+
+  
 
   return (
     <div className={styles.bodyContainer}>
@@ -137,20 +153,31 @@ export default function Page() {
             onChange={(e) => setUserInput(e.target.value)} />
           <div
             className={styles.button}
-            onClick={()=>{setCurrIP(userInput)}}
+            onClick={()=>{handleSetCurrIP(userInput)}}
           >
           </div>
+
+          {/* feedback popup */}
+          {showFeedback ? 
+          <div className={styles.feedbackPopUp}>
+            <div className={styles.feedbackProgressBar}></div>
+            <div className={styles.feedbackProgressBarBg}></div>
+            <MdCancel className={styles.feedbackIcon} /><p>Invalid IP address</p>
+          </div> : <></>}
+          
+
         </div>
         {/* another 4-col flex container for info display, map with array here */}
         <div className={styles.infoContainer}>
         {Object.keys(geoInfoProcessed).map((key) =>
           <div className={styles.singleInfoCard} key={key}>
             <p className={styles.subtitle}>{key.toUpperCase()}</p>
-            <p className={styles.detail}>{geoInfoProcessed[key]}</p>
+            {geoInfoProcessed[key] ?
+            <p className={styles.detail}>{geoInfoProcessed[key]}</p> :
+            <p className={styles.loadingtext}></p>}
+            
           </div>
         )}
-          {/* <p>hehe {geoInfoProcessed['ip address']}</p>
-          <p>mmm {geoInfoProcessed['location']}</p> */}
         </div>
       </div>
 

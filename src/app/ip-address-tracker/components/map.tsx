@@ -8,10 +8,6 @@ import { TileLayer } from 'react-leaflet/TileLayer';
 import L from 'leaflet';
 
 export default function Map({pos} : {pos: number[]}) {
-  // https://react.dev/learn/passing-props-to-a-component
-  // const { position, zoom } = props;
-  // const { position, zoom } = props;
-
   // console.log(pos); // still trigerred when the input gets changed, but no component rerender with useMemo
   // https://stackoverflow.com/questions/76958201/how-to-pass-props-to-child-component-in-next-js-13
 

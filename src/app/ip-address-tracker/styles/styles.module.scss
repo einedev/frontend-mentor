@@ -1,7 +1,8 @@
 @import './themes.module';
 @import './mixins.module';
-@import './backgroundComponent.module';
 @import './mainComponent.module';
+@import './feedbackPopUp.module';
+@import './backgroundComponent.module';
 
 .bodyContainer {
   background-color: white;

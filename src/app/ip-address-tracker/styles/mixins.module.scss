@@ -8,6 +8,6 @@
   box-shadow: 0 0 12px $drop-shadow;
 }
 
-@mixin roundCorner() {
-  border-radius: 12px;  
+@mixin roundCorner($size: 12px) {
+  border-radius: $size;  
 }
