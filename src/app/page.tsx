@@ -39,7 +39,7 @@ export default function Home() {
       <hr />
       <ul>
         {projectsFEM.map((proj, index) => (
-          <li>{proj.name}
+          <li key={index}>{proj.name}
             <ul>
             {proj.liveSiteUrl ? <li><Link href={proj.liveSiteUrl}>Live site</Link></li> : <></>}
             {proj.sourceCodeUrl ? <li><Link href={proj.sourceCodeUrl}>Source code</Link></li> : <></>}
