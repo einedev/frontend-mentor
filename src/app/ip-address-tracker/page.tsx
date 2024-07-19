@@ -34,7 +34,7 @@ export default function Page() {
     'isp': undefined,
   });
   const [showFeedback, setshowFeedback] = useState(false);
-
+  const [showNotice, setshowNotice] = useState(sessionStorage.getItem("showNotice") ?? "true");
   
   const handleShowFeedback = async () => {
     setshowFeedback(true);
@@ -134,10 +134,24 @@ export default function Page() {
     }
   }
 
-  
+  const handleShowNotice = () => {
+    sessionStorage.setItem("showNotice", "false");
+    setshowNotice("false");
+  }
 
   return (
     <div className={styles.bodyContainer}>
+
+      { (showNotice === "true") ?
+      <div className={styles.noticeContainer}>
+        <div className={styles.noticeContainerMain}>
+          <h2>Notice</h2>
+          <p>In order to get expected results from APIs,
+            an access to insecure contents is required (browser setting).</p>
+          <button onClick={() => handleShowNotice()}>I understand</button>
+        </div>
+      </div> : <></> }
+      
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
       
       {/* flex layout for main components (larger z-index) */}

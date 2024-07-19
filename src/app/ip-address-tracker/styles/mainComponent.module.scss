@@ -3,6 +3,7 @@
   width: 1110px;
   @include flexDispaly(column);
   align-items: center;
+  position: relative;
   @media (max-width: 1200px) {
     width: 900px;
   }

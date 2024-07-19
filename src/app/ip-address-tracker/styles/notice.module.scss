@@ -1,0 +1,41 @@
+.noticeContainer {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include flexDispaly();
+  justify-content: center;
+  align-items: center;
+  background-color: $very-dark-gray-alpha;
+  z-index: 10;
+}
+
+.noticeContainerMain {
+  box-sizing: border-box;
+  background-color: $white;
+  padding: $size-md;
+  width: 250px;
+  height: 300px;
+  @include roundCorner();
+  @include flexDispaly();
+  
+  h2, p {
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: $size-ml;
+  }
+  
+  button {
+
+    background-color: $very-dark-gray;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
