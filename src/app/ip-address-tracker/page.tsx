@@ -34,8 +34,11 @@ export default function Page() {
     'isp': undefined,
   });
   const [showFeedback, setshowFeedback] = useState(false);
-  const [showNotice, setshowNotice] = useState(sessionStorage.getItem("showNotice") ?? "true");
+  const [showNotice, setshowNotice] = useState("false");
   
+  // https://github.com/vercel/next.js/discussions/19911
+  const ISSERVER = typeof window === "undefined";
+
   const handleShowFeedback = async () => {
     setshowFeedback(true);
     setTimeout(() => {
@@ -91,6 +94,9 @@ export default function Page() {
 
   useEffect(() => {
     // init
+    if (!ISSERVER) {
+      setshowNotice(sessionStorage.getItem("showNotice") ?? "true");
+    }
     const loadCurrIP = async() => {
       try {
         const res = await axios.get('https://api.ipify.org?format=json');
